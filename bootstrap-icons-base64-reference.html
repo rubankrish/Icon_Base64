@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bootstrap 5 Icons — Base64 Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --card: #1a1a26;
+    --card-hover: #22223a;
+    --border: #2a2a42;
+    --accent: #6c63ff;
+    --accent2: #ff6584;
+    --accent3: #43e0a0;
+    --text: #e8e8f0;
+    --muted: #888899;
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── Header ─── */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 28px;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 1rem; font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+  .logo span { color: var(--accent2); }
+  .header-stats {
+    display: flex; gap: 14px; align-items: center; flex: 1;
+  }
+  .stat-pill {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .stat-pill b { color: var(--accent3); }
+
+  #search-wrap {
+    position: relative; flex: 1; min-width: 200px; max-width: 380px;
+  }
+  #search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+  #search {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 14px 9px 38px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color .2s;
+  }
+  #search:focus { border-color: var(--accent); }
+  #search::placeholder { color: var(--muted); }
+
+  .filter-tabs {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .tab {
+    font-family: var(--mono); font-size: 0.65rem;
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 5px 10px; cursor: pointer;
+    background: transparent; color: var(--muted);
+    transition: all .15s;
+  }
+  .tab:hover { border-color: var(--accent); color: var(--accent); }
+  .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* ─── Loader ─── */
+  #loader {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; min-height: 60vh; gap: 24px;
+  }
+  .loader-ring {
+    width: 64px; height: 64px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loader-text {
+    font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+    text-align: center; line-height: 1.8;
+  }
+  #progress-bar-wrap {
+    width: 320px; height: 4px;
+    background: var(--border); border-radius: 2px; overflow: hidden;
+  }
+  #progress-bar {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.2s;
+    border-radius: 2px;
+  }
+
+  /* ─── Grid ─── */
+  #main { padding: 24px 28px; display: none; }
+
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .icon-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 12px 12px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    cursor: pointer;
+    transition: all .18s;
+    position: relative;
+    overflow: hidden;
+  }
+  .icon-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(108,99,255,0.06), rgba(255,101,132,0.04));
+    opacity: 0; transition: opacity .18s;
+  }
+  .icon-card:hover { background: var(--card-hover); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,0.15); }
+  .icon-card:hover::before { opacity: 1; }
+
+  .icon-preview {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    filter: invert(1);
+  }
+  .icon-preview img { width: 100%; height: 100%; object-fit: contain; }
+
+  .icon-name {
+    font-family: var(--mono); font-size: 0.6rem;
+    color: var(--muted); text-align: center;
+    word-break: break-word; line-height: 1.4;
+    max-width: 100%;
+  }
+  .icon-card:hover .icon-name { color: var(--accent); }
+
+  .copy-badge {
+    font-family: var(--mono); font-size: 0.55rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2px 7px; color: var(--muted);
+    opacity: 0; transition: opacity .18s;
+  }
+  .icon-card:hover .copy-badge { opacity: 1; }
+
+  /* ─── Modal ─── */
+  #modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  #modal-overlay.open { display: flex; }
+
+  #modal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 100%; max-width: 680px;
+    max-height: 90vh; overflow-y: auto;
+    padding: 28px;
+    position: relative;
+    animation: pop-in 0.18s ease;
+  }
+  @keyframes pop-in { from { transform: scale(.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  #modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 10px; cursor: pointer;
+    font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
+    transition: all .15s;
+  }
+  #modal-close:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  #modal-header {
+    display: flex; align-items: center; gap: 20px; margin-bottom: 24px;
+  }
+  #modal-icon-preview {
+    width: 72px; height: 72px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    filter: invert(1);
+    flex-shrink: 0;
+  }
+  #modal-icon-preview img { width: 44px; height: 44px; }
+  #modal-title { font-family: var(--mono); font-size: 1.1rem; color: var(--text); }
+  #modal-subtitle { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+
+  .data-section { margin-bottom: 20px; }
+  .data-label {
+    font-family: var(--mono); font-size: 0.65rem; color: var(--accent3);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .copy-btn {
+    font-family: var(--mono); font-size: 0.6rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 5px; padding: 3px 10px; cursor: pointer; color: var(--muted);
+    transition: all .15s;
+  }
+  .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .copy-btn.copied { border-color: var(--accent3); color: var(--accent3); }
+
+  .code-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    font-family: var(--mono); font-size: 0.62rem;
+    color: var(--muted); line-height: 1.6;
+    word-break: break-all;
+    max-height: 120px; overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center; padding: 32px;
+    font-family: var(--mono); font-size: 0.65rem; color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  footer b { color: var(--accent); }
+
+  /* ─── Toast ─── */
+  #toast {
+    position: fixed; bottom: 28px; right: 28px; z-index: 500;
+    background: var(--accent);
+    color: #fff; font-family: var(--mono); font-size: 0.72rem;
+    padding: 10px 20px; border-radius: 8px;
+    transform: translateY(20px); opacity: 0;
+    transition: all .2s;
+    pointer-events: none;
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+
+  #no-results {
+    display: none; text-align: center; padding: 60px 20px;
+    font-family: var(--mono); color: var(--muted); font-size: 0.85rem;
+    grid-column: 1/-1;
+  }
+</style>
+</head>
+<body>
+
+<!-- Toast -->
+<div id="toast">✓ Copied to clipboard!</div>
+
+<!-- Header -->
+<header>
+  <div class="logo">bi<span>:</span>ref</div>
+  <div class="header-stats">
+    <div class="stat-pill">Bootstrap Icons <b>v1.11</b></div>
+    <div class="stat-pill" id="loaded-count">Loading…</div>
+    <div class="stat-pill" id="shown-count" style="display:none"></div>
+  </div>
+  <div id="search-wrap">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zm-5.242 1.656a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/></svg>
+    <input id="search" type="text" placeholder="Search icons…" autocomplete="off" spellcheck="false"/>
+  </div>
+  <div class="filter-tabs" id="filter-tabs">
+    <button class="tab active" data-cat="all">All</button>
+  </div>
+</header>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+  <div class="loader-text" id="loader-text">Fetching Bootstrap Icons list…<br>Converting SVGs to Base64…</div>
+</div>
+
+<!-- Main Grid -->
+<div id="main">
+  <div id="grid">
+    <div id="no-results">No icons match your search.</div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modal-overlay">
+  <div id="modal">
+    <button id="modal-close">✕ close</button>
+    <div id="modal-header">
+      <div id="modal-icon-preview"><img id="modal-img" src="" alt=""/></div>
+      <div>
+        <div id="modal-title"></div>
+        <div id="modal-subtitle"></div>
+      </div>
+    </div>
+
+    <div class="data-section">
+      <div class="data-label">
+        SVG Source
+        <button class="copy-btn" id="copy-svg">Copy SVG</button>
+      </div>
+      <div class="code-box" id="modal-svg"></div>
+    </div>
+
+    <div class="data-section">
+      <div class="data-label">
+        Base64 Data URI
+        <button class="copy-btn" id="copy-b64">Copy Base64</button>
+      </div>
+      <div class="code-box" id="modal-b64"></div>
+    </div>
+
+    <div class="data-section">
+      <div class="data-label">
+        HTML &lt;img&gt; Tag
+        <button class="copy-btn" id="copy-img">Copy &lt;img&gt;</button>
+      </div>
+      <div class="code-box" id="modal-img-tag"></div>
+    </div>
+
+    <div class="data-section">
+      <div class="data-label">
+        CSS background-image
+        <button class="copy-btn" id="copy-css">Copy CSS</button>
+      </div>
+      <div class="code-box" id="modal-css"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <b>Bootstrap Icons Base64 Reference</b> — 1000+ icons from Bootstrap Icons v1.11 · Click any icon to view base64 data
+</footer>
+
+<script>
+// ──────────────────────────────────────────────────
+// CONFIG
+// ──────────────────────────────────────────────────
+const CDN_BASE = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/';
+const INDEX_URL = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.json';
+
+// State
+let allIcons = []; // { name, svg, b64 }
+let filtered = [];
+let currentCat = 'all';
+let categories = {};
+
+// ──────────────────────────────────────────────────
+// HELPERS
+// ──────────────────────────────────────────────────
+function svgToB64(svgText) {
+  return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgText)));
+}
+
+function toast(msg = '✓ Copied!') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    toast('✓ Copied to clipboard!');
+    if (btn) {
+      const orig = btn.textContent;
+      btn.textContent = '✓ Done';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+    }
+  });
+}
+
+// ──────────────────────────────────────────────────
+// DETECT CATEGORY from icon name
+// ──────────────────────────────────────────────────
+const CAT_MAP = [
+  ['arrow', 'Arrows'],
+  ['chevron', 'Arrows'],
+  ['caret', 'Arrows'],
+  ['person', 'People'],
+  ['people', 'People'],
+  ['heart', 'Health & Medical'],
+  ['hospital', 'Health & Medical'],
+  ['capsule', 'Health & Medical'],
+  ['file', 'Files & Docs'],
+  ['folder', 'Files & Docs'],
+  ['clipboard', 'Files & Docs'],
+  ['journal', 'Files & Docs'],
+  ['camera', 'Media'],
+  ['music', 'Media'],
+  ['play', 'Media'],
+  ['pause', 'Media'],
+  ['volume', 'Media'],
+  ['film', 'Media'],
+  ['image', 'Media'],
+  ['mic', 'Media'],
+  ['house', 'Buildings'],
+  ['building', 'Buildings'],
+  ['shop', 'Buildings'],
+  ['cart', 'Commerce'],
+  ['bag', 'Commerce'],
+  ['credit', 'Commerce'],
+  ['currency', 'Commerce'],
+  ['coin', 'Commerce'],
+  ['cash', 'Commerce'],
+  ['phone', 'Devices'],
+  ['laptop', 'Devices'],
+  ['tablet', 'Devices'],
+  ['watch', 'Devices'],
+  ['cpu', 'Devices'],
+  ['printer', 'Devices'],
+  ['keyboard', 'Devices'],
+  ['mouse', 'Devices'],
+  ['hdd', 'Devices'],
+  ['usb', 'Devices'],
+  ['wifi', 'Devices'],
+  ['bluetooth', 'Devices'],
+  ['lock', 'Security'],
+  ['shield', 'Security'],
+  ['key', 'Security'],
+  ['eye', 'Security'],
+  ['cloud', 'Network'],
+  ['server', 'Network'],
+  ['router', 'Network'],
+  ['geo', 'Maps & Location'],
+  ['map', 'Maps & Location'],
+  ['compass', 'Maps & Location'],
+  ['pin', 'Maps & Location'],
+  ['star', 'Ratings & UI'],
+  ['flag', 'Ratings & UI'],
+  ['bell', 'Ratings & UI'],
+  ['bookmark', 'Ratings & UI'],
+  ['tag', 'Ratings & UI'],
+  ['chat', 'Communication'],
+  ['envelope', 'Communication'],
+  ['send', 'Communication'],
+  ['share', 'Communication'],
+  ['check', 'Status'],
+  ['x-', 'Status'],
+  ['exclamation', 'Status'],
+  ['info', 'Status'],
+  ['question', 'Status'],
+  ['circle', 'Shapes'],
+  ['square', 'Shapes'],
+  ['triangle', 'Shapes'],
+  ['diamond', 'Shapes'],
+  ['grid', 'Layout'],
+  ['list', 'Layout'],
+  ['table', 'Layout'],
+  ['layout', 'Layout'],
+  ['columns', 'Layout'],
+  ['calendar', 'Date & Time'],
+  ['clock', 'Date & Time'],
+  ['hourglass', 'Date & Time'],
+  ['sun', 'Weather'],
+  ['moon', 'Weather'],
+  ['cloud-', 'Weather'],
+  ['snow', 'Weather'],
+  ['wind', 'Weather'],
+  ['lightning', 'Weather'],
+  ['tools', 'Tools & Dev'],
+  ['wrench', 'Tools & Dev'],
+  ['gear', 'Tools & Dev'],
+  ['terminal', 'Tools & Dev'],
+  ['code', 'Tools & Dev'],
+  ['bug', 'Tools & Dev'],
+  ['pencil', 'Editing'],
+  ['pen', 'Editing'],
+  ['eraser', 'Editing'],
+  ['scissors', 'Editing'],
+  ['crop', 'Editing'],
+  ['palette', 'Design'],
+  ['brush', 'Design'],
+  ['magic', 'Design'],
+  ['emoji', 'Emoji'],
+  ['hand', 'Gestures'],
+  ['cursor', 'Gestures'],
+  ['suit', 'Cards & Games'],
+  ['dice', 'Cards & Games'],
+  ['trophy', 'Sports & Awards'],
+  ['award', 'Sports & Awards'],
+  ['bicycle', 'Transport'],
+  ['car', 'Transport'],
+  ['bus', 'Transport'],
+  ['truck', 'Transport'],
+  ['airplane', 'Transport'],
+  ['train', 'Transport'],
+  ['ship', 'Transport'],
+];
+
+function getCategory(name) {
+  for (const [prefix, cat] of CAT_MAP) {
+    if (name.startsWith(prefix) || name.includes('-' + prefix) || name.includes(prefix)) return cat;
+  }
+  return 'Misc';
+}
+
+// ──────────────────────────────────────────────────
+// FETCH + BUILD
+// ──────────────────────────────────────────────────
+async function loadIcons() {
+  const loader = document.getElementById('loader');
+  const loaderText = document.getElementById('loader-text');
+  const progress = document.getElementById('progress-bar');
+
+  // 1. Fetch icon list from CDN
+  loaderText.innerHTML = 'Fetching icon list from CDN…<br><small style="color:var(--accent3)">bootstrap-icons@1.11.3</small>';
+  let iconNames = [];
+  try {
+    const res = await fetch(INDEX_URL);
+    const json = await res.json();
+    iconNames = Object.keys(json);
+  } catch(e) {
+    // fallback: build list of first 1000 known icons
+    iconNames = getHardcodedIconNames();
+  }
+
+  const total = iconNames.length;
+  loaderText.innerHTML = `Converting <b style="color:var(--accent)">${total}</b> SVGs to Base64…<br><small style="color:var(--muted)">This may take a moment</small>`;
+
+  // 2. Fetch SVGs in batches and convert to base64
+  const BATCH = 40;
+  for (let i = 0; i < total; i += BATCH) {
+    const batch = iconNames.slice(i, i + BATCH);
+    await Promise.all(batch.map(async (name) => {
+      try {
+        const r = await fetch(`${CDN_BASE}${name}.svg`);
+        if (!r.ok) return;
+        const svgText = await r.text();
+        const b64 = svgToB64(svgText);
+        const cat = getCategory(name);
+        allIcons.push({ name, svg: svgText, b64, cat });
+        if (!categories[cat]) categories[cat] = 0;
+        categories[cat]++;
+      } catch {}
+    }));
+    progress.style.width = Math.round(((i + BATCH) / total) * 100) + '%';
+    loaderText.innerHTML = `Converting SVGs to Base64… <b style="color:var(--accent)">${Math.min(i + BATCH, total)}</b> / ${total}`;
+    await new Promise(r => setTimeout(r, 0)); // yield to browser
+  }
+
+  // 3. Sort alphabetically
+  allIcons.sort((a, b) => a.name.localeCompare(b.name));
+  filtered = [...allIcons];
+
+  // 4. Build category tabs
+  buildTabs();
+
+  // 5. Render
+  document.getElementById('loaded-count').innerHTML = `<b>${allIcons.length}</b> icons loaded`;
+  loader.style.display = 'none';
+  document.getElementById('main').style.display = 'block';
+  renderGrid(allIcons);
+}
+
+// ──────────────────────────────────────────────────
+// BUILD TABS
+// ──────────────────────────────────────────────────
+function buildTabs() {
+  const tabsEl = document.getElementById('filter-tabs');
+  const sorted = Object.entries(categories).sort((a, b) => b[1] - a[1]);
+  for (const [cat, count] of sorted) {
+    const btn = document.createElement('button');
+    btn.className = 'tab';
+    btn.dataset.cat = cat;
+    btn.textContent = `${cat} (${count})`;
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      currentCat = cat;
+      applyFilter();
+    });
+    tabsEl.appendChild(btn);
+  }
+  tabsEl.querySelector('[data-cat="all"]').textContent = `All (${allIcons.length})`;
+}
+
+// ──────────────────────────────────────────────────
+// RENDER
+// ──────────────────────────────────────────────────
+function renderGrid(icons) {
+  const grid = document.getElementById('grid');
+  const noResults = document.getElementById('no-results');
+
+  // Remove old cards
+  Array.from(grid.querySelectorAll('.icon-card')).forEach(el => el.remove());
+
+  if (icons.length === 0) {
+    noResults.style.display = 'block';
+    document.getElementById('shown-count').style.display = 'none';
+    return;
+  }
+  noResults.style.display = 'none';
+
+  const shownCount = document.getElementById('shown-count');
+  shownCount.style.display = 'block';
+  shownCount.innerHTML = `Showing <b>${icons.length}</b>`;
+
+  // Use fragment for performance
+  const frag = document.createDocumentFragment();
+  for (const icon of icons) {
+    const card = document.createElement('div');
+    card.className = 'icon-card';
+    card.innerHTML = `
+      <div class="icon-preview"><img src="${icon.b64}" alt="${icon.name}" loading="lazy"/></div>
+      <div class="icon-name">${icon.name}</div>
+      <div class="copy-badge">click to copy</div>
+    `;
+    card.addEventListener('click', () => openModal(icon));
+    frag.appendChild(card);
+  }
+  grid.insertBefore(frag, noResults);
+}
+
+// ──────────────────────────────────────────────────
+// FILTER
+// ──────────────────────────────────────────────────
+function applyFilter() {
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  filtered = allIcons.filter(ic => {
+    const matchCat = currentCat === 'all' || ic.cat === currentCat;
+    const matchQ = !q || ic.name.includes(q);
+    return matchCat && matchQ;
+  });
+  renderGrid(filtered);
+}
+
+document.getElementById('search').addEventListener('input', applyFilter);
+document.querySelector('[data-cat="all"]').addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('[data-cat="all"]').classList.add('active');
+  currentCat = 'all';
+  applyFilter();
+});
+
+// ──────────────────────────────────────────────────
+// MODAL
+// ──────────────────────────────────────────────────
+function openModal(icon) {
+  const overlay = document.getElementById('modal-overlay');
+  document.getElementById('modal-img').src = icon.b64;
+  document.getElementById('modal-title').textContent = icon.name;
+  document.getElementById('modal-subtitle').textContent = `Category: ${icon.cat} · SVG · Bootstrap Icons v1.11`;
+  document.getElementById('modal-svg').textContent = icon.svg;
+  document.getElementById('modal-b64').textContent = icon.b64;
+  document.getElementById('modal-img-tag').textContent = `<img src="${icon.b64}" alt="${icon.name}" width="24" height="24"/>`;
+  document.getElementById('modal-css').textContent = `.icon-${icon.name} {\n  background-image: url("${icon.b64}");\n  width: 24px; height: 24px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  display: inline-block;\n}`;
+  overlay.classList.add('open');
+}
+
+document.getElementById('modal-close').addEventListener('click', () => {
+  document.getElementById('modal-overlay').classList.remove('open');
+});
+document.getElementById('modal-overlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modal-overlay'))
+    document.getElementById('modal-overlay').classList.remove('open');
+});
+
+document.getElementById('copy-svg').addEventListener('click', (e) => {
+  copyText(document.getElementById('modal-svg').textContent, e.target);
+});
+document.getElementById('copy-b64').addEventListener('click', (e) => {
+  copyText(document.getElementById('modal-b64').textContent, e.target);
+});
+document.getElementById('copy-img').addEventListener('click', (e) => {
+  copyText(document.getElementById('modal-img-tag').textContent, e.target);
+});
+document.getElementById('copy-css').addEventListener('click', (e) => {
+  copyText(document.getElementById('modal-css').textContent, e.target);
+});
+
+// Keyboard close
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.getElementById('modal-overlay').classList.remove('open');
+});
+
+// ──────────────────────────────────────────────────
+// HARDCODED FALLBACK (used if CDN index fetch fails)
+// ──────────────────────────────────────────────────
+function getHardcodedIconNames() {
+  return [
+    "0-circle","0-circle-fill","0-square","0-square-fill",
+    "1-circle","1-circle-fill","1-square","1-square-fill",
+    "2-circle","2-circle-fill","2-square","2-square-fill",
+    "3-circle","3-circle-fill","3-square","3-square-fill",
+    "4-circle","4-circle-fill","4-square","4-square-fill",
+    "5-circle","5-circle-fill","5-square","5-square-fill",
+    "6-circle","6-circle-fill","6-square","6-square-fill",
+    "7-circle","7-circle-fill","7-square","7-square-fill",
+    "8-circle","8-circle-fill","8-square","8-square-fill",
+    "9-circle","9-circle-fill","9-square","9-square-fill",
+    "activity","airplane","airplane-engines","airplane-engines-fill","airplane-fill",
+    "alarm","alarm-fill","alexa","align-bottom","align-center",
+    "align-end","align-middle","align-start","align-top","alt",
+    "amazon","amd","android","android2","app",
+    "app-indicator","apple","archive","archive-fill","arrow-90deg-down",
+    "arrow-90deg-left","arrow-90deg-right","arrow-90deg-up","arrow-bar-down","arrow-bar-left",
+    "arrow-bar-right","arrow-bar-up","arrow-clockwise","arrow-counterclockwise","arrow-down",
+    "arrow-down-circle","arrow-down-circle-fill","arrow-down-left","arrow-down-left-circle","arrow-down-left-circle-fill",
+    "arrow-down-left-square","arrow-down-left-square-fill","arrow-down-right","arrow-down-right-circle","arrow-down-right-circle-fill",
+    "arrow-down-right-square","arrow-down-right-square-fill","arrow-down-short","arrow-down-square","arrow-down-square-fill",
+    "arrow-down-up","arrow-left","arrow-left-circle","arrow-left-circle-fill","arrow-left-right",
+    "arrow-left-short","arrow-left-square","arrow-left-square-fill","arrow-repeat","arrow-return-left",
+    "arrow-return-right","arrow-right","arrow-right-circle","arrow-right-circle-fill","arrow-right-short",
+    "arrow-right-square","arrow-right-square-fill","arrow-through-heart","arrow-through-heart-fill",
+    "arrow-up","arrow-up-circle","arrow-up-circle-fill","arrow-up-left","arrow-up-left-circle",
+    "arrow-up-left-circle-fill","arrow-up-left-square","arrow-up-left-square-fill",
+    "arrow-up-right","arrow-up-right-circle","arrow-up-right-circle-fill","arrow-up-right-square","arrow-up-right-square-fill",
+    "arrow-up-short","arrow-up-square","arrow-up-square-fill","arrows","arrows-angle-contract",
+    "arrows-angle-expand","arrows-collapse","arrows-expand","arrows-fullscreen","arrows-move",
+    "aspect-ratio","aspect-ratio-fill","asterisk","at","award","award-fill",
+    "back","backspace","backspace-fill","backspace-reverse","backspace-reverse-fill",
+    "badge-3d","badge-3d-fill","badge-4k","badge-4k-fill","badge-8k","badge-8k-fill",
+    "badge-ad","badge-ad-fill","badge-ar","badge-ar-fill","badge-cc","badge-cc-fill",
+    "badge-hd","badge-hd-fill","badge-sd","badge-sd-fill","badge-tm","badge-tm-fill",
+    "badge-vo","badge-vo-fill","badge-vr","badge-vr-fill","badge-wc","badge-wc-fill",
+    "bag","bag-check","bag-check-fill","bag-dash","bag-dash-fill",
+    "bag-fill","bag-heart","bag-heart-fill","bag-plus","bag-plus-fill",
+    "bag-x","bag-x-fill","balloon","balloon-fill","balloon-heart","balloon-heart-fill",
+    "ban","ban-fill","bandaid","bandaid-fill","bar-chart","bar-chart-fill",
+    "bar-chart-line","bar-chart-line-fill","bar-chart-steps","basket","basket-fill",
+    "basket2","basket2-fill","basket3","basket3-fill","battery","battery-charging",
+    "battery-full","battery-half","behance","bell","bell-fill","bell-slash","bell-slash-fill",
+    "bezier","bezier2","bicycle","bing","binoculars","binoculars-fill",
+    "blockquote-left","blockquote-right","bluetooth","body-text","book",
+    "book-fill","book-half","bookmarks","bookmarks-fill","bootstrap",
+    "bootstrap-fill","bootstrap-reboot","border","border-all","border-bottom",
+    "border-center","border-inner","border-left","border-middle","border-outer",
+    "border-right","border-style","border-top","border-width","bounding-box",
+    "bounding-box-circles","box","box-arrow-down","box-arrow-down-left","box-arrow-down-right",
+    "box-arrow-in-down","box-arrow-in-down-left","box-arrow-in-down-right","box-arrow-in-left","box-arrow-in-right",
+    "box-arrow-in-up","box-arrow-in-up-left","box-arrow-in-up-right","box-arrow-left","box-arrow-right",
+    "box-arrow-up","box-arrow-up-left","box-arrow-up-right","box-fill","box-seam","box-seam-fill",
+    "box2","box2-fill","box2-heart","box2-heart-fill","boxes","braces","braces-asterisk",
+    "bricks","briefcase","briefcase-fill","brightness-alt-high","brightness-alt-high-fill",
+    "brightness-alt-low","brightness-alt-low-fill","brightness-high","brightness-high-fill",
+    "brightness-low","brightness-low-fill","brilliance","broadcast","broadcast-pin",
+    "browser-chrome","browser-edge","browser-firefox","browser-safari","brush","brush-fill",
+    "bucket","bucket-fill","bug","bug-fill","building","building-add","building-check",
+    "building-dash","building-down","building-exclamation","building-fill","building-fill-add",
+    "building-fill-check","building-fill-dash","building-fill-down","building-fill-exclamation",
+    "building-fill-gear","building-fill-lock","building-fill-slash","building-fill-up",
+    "building-fill-x","building-gear","building-lock","building-slash","building-up","building-x",
+    "buildings","buildings-fill","bullseye","bus-front","bus-front-fill",
+    "calculator","calculator-fill","calendar","calendar-check","calendar-check-fill",
+    "calendar-date","calendar-date-fill","calendar-day","calendar-day-fill","calendar-event","calendar-event-fill",
+    "calendar-fill","calendar-heart","calendar-heart-fill","calendar-minus","calendar-minus-fill",
+    "calendar-month","calendar-month-fill","calendar-plus","calendar-plus-fill","calendar-range","calendar-range-fill",
+    "calendar-week","calendar-week-fill","calendar-x","calendar-x-fill","calendar2","calendar2-check",
+    "calendar2-check-fill","calendar2-date","calendar2-date-fill","calendar2-day","calendar2-day-fill",
+    "calendar2-event","calendar2-event-fill","calendar2-fill","calendar2-heart","calendar2-heart-fill",
+    "calendar2-minus","calendar2-minus-fill","calendar2-month","calendar2-month-fill",
+    "calendar2-plus","calendar2-plus-fill","calendar2-range","calendar2-range-fill",
+    "calendar2-week","calendar2-week-fill","calendar2-x","calendar2-x-fill",
+    "calendar3","calendar3-event","calendar3-event-fill","calendar3-fill","calendar3-range","calendar3-range-fill","calendar3-week","calendar3-week-fill",
+    "calendar4","calendar4-event","calendar4-range","calendar4-week",
+    "camera","camera-fill","camera-reels","camera-reels-fill","camera-video","camera-video-fill",
+    "camera-video-off","camera-video-off-fill","camera2","capslock","capslock-fill",
+    "capsule","capsule-pill","car-front","car-front-fill",
+    "card-checklist","card-heading","card-image","card-list","card-text",
+    "caret-down","caret-down-fill","caret-down-square","caret-down-square-fill",
+    "caret-left","caret-left-fill","caret-left-square","caret-left-square-fill",
+    "caret-right","caret-right-fill","caret-right-square","caret-right-square-fill",
+    "caret-up","caret-up-fill","caret-up-square","caret-up-square-fill",
+    "cart","cart-check","cart-check-fill","cart-dash","cart-dash-fill",
+    "cart-fill","cart-plus","cart-plus-fill","cart-x","cart-x-fill",
+    "cart2","cart3","cart4","cash","cash-coin","cash-stack",
+    "cassette","cassette-fill","cast","chat","chat-dots","chat-dots-fill",
+    "chat-fill","chat-heart","chat-heart-fill","chat-left","chat-left-dots","chat-left-dots-fill",
+    "chat-left-fill","chat-left-heart","chat-left-heart-fill","chat-left-quote","chat-left-quote-fill",
+    "chat-left-text","chat-left-text-fill","chat-quote","chat-quote-fill",
+    "chat-right","chat-right-dots","chat-right-dots-fill","chat-right-fill","chat-right-heart","chat-right-heart-fill",
+    "chat-right-quote","chat-right-quote-fill","chat-right-text","chat-right-text-fill",
+    "chat-square","chat-square-dots","chat-square-dots-fill","chat-square-fill","chat-square-heart",
+    "chat-square-heart-fill","chat-square-quote","chat-square-quote-fill","chat-square-text","chat-square-text-fill",
+    "chat-text","chat-text-fill","check","check-all","check-circle","check-circle-fill",
+    "check-lg","check-square","check-square-fill","check2","check2-all","check2-circle","check2-square",
+    "chevron-bar-contract","chevron-bar-down","chevron-bar-expand","chevron-bar-left","chevron-bar-right","chevron-bar-up",
+    "chevron-compact-down","chevron-compact-left","chevron-compact-right","chevron-compact-up",
+    "chevron-contract","chevron-double-down","chevron-double-left","chevron-double-right","chevron-double-up",
+    "chevron-down","chevron-expand","chevron-left","chevron-right","chevron-up",
+    "circle","circle-fill","circle-half","circle-square","clipboard","clipboard-check","clipboard-check-fill",
+    "clipboard-data","clipboard-data-fill","clipboard-fill","clipboard-heart","clipboard-heart-fill",
+    "clipboard-minus","clipboard-minus-fill","clipboard-plus","clipboard-plus-fill",
+    "clipboard-pulse","clipboard-x","clipboard-x-fill","clipboard2","clipboard2-check","clipboard2-check-fill",
+    "clipboard2-data","clipboard2-data-fill","clipboard2-fill","clipboard2-heart","clipboard2-heart-fill",
+    "clipboard2-minus","clipboard2-minus-fill","clipboard2-plus","clipboard2-plus-fill",
+    "clipboard2-pulse","clipboard2-pulse-fill","clipboard2-x","clipboard2-x-fill",
+    "clock","clock-fill","clock-history","cloud","cloud-arrow-down","cloud-arrow-down-fill",
+    "cloud-arrow-up","cloud-arrow-up-fill","cloud-check","cloud-check-fill","cloud-download","cloud-download-fill",
+    "cloud-drizzle","cloud-drizzle-fill","cloud-fill","cloud-fog","cloud-fog-fill","cloud-fog2","cloud-fog2-fill",
+    "cloud-hail","cloud-hail-fill","cloud-haze","cloud-haze-fill","cloud-haze2","cloud-haze2-fill",
+    "cloud-lightning","cloud-lightning-fill","cloud-lightning-rain","cloud-lightning-rain-fill",
+    "cloud-minus","cloud-minus-fill","cloud-moon","cloud-moon-fill","cloud-moon-rain","cloud-moon-rain-fill",
+    "cloud-plus","cloud-plus-fill","cloud-rain","cloud-rain-fill","cloud-rain-heavy","cloud-rain-heavy-fill",
+    "cloud-slash","cloud-slash-fill","cloud-sleet","cloud-sleet-fill","cloud-snow","cloud-snow-fill",
+    "cloud-sun","cloud-sun-fill","cloud-sun-rain","cloud-sun-rain-fill","cloud-upload","cloud-upload-fill",
+    "clouds","clouds-fill","code","code-slash","code-square","coin","collection","collection-fill",
+    "columns","columns-gap","command","compass","compass-fill","cone","cone-striped",
+    "controller","copy","cpu","cpu-fill","credit-card","credit-card-2-back","credit-card-2-back-fill",
+    "credit-card-2-front","credit-card-2-front-fill","credit-card-fill","crop","crosshair","crosshair2",
+    "cup","cup-fill","cup-hot","cup-hot-fill","cup-straw","currency-bitcoin","currency-dollar",
+    "currency-euro","currency-exchange","currency-pound","currency-rupee","currency-yen",
+    "cursor","cursor-fill","cursor-text","dash","dash-circle","dash-circle-fill","dash-circle-dotted",
+    "dash-lg","dash-square","dash-square-fill","database","database-add","database-check",
+    "database-dash","database-down","database-exclamation","database-fill","database-fill-add",
+    "database-fill-check","database-fill-dash","database-fill-down","database-fill-exclamation",
+    "database-fill-gear","database-fill-lock","database-fill-slash","database-fill-up","database-fill-x",
+    "database-gear","database-lock","database-slash","database-up","database-x",
+    "device-hdd","device-hdd-fill","device-ssd","device-ssd-fill",
+    "diagram-2","diagram-2-fill","diagram-3","diagram-3-fill",
+    "diamond","diamond-fill","diamond-half","dice-1","dice-1-fill","dice-2","dice-2-fill",
+    "dice-3","dice-3-fill","dice-4","dice-4-fill","dice-5","dice-5-fill","dice-6","dice-6-fill",
+    "disc","disc-fill","discord","display","display-fill","displayport","displayport-fill",
+    "distribute-horizontal","distribute-vertical","door-closed","door-closed-fill","door-open","door-open-fill",
+    "dot","download","dpad","dpad-fill","dribbble","droplet","droplet-fill","droplet-half",
+    "ear","ear-fill","earbuds","easel","easel-fill","easel2","easel2-fill","easel3","easel3-fill",
+    "egg","egg-fill","egg-fried","eject","eject-fill","emoji-angry","emoji-angry-fill",
+    "emoji-dizzy","emoji-dizzy-fill","emoji-expressionless","emoji-expressionless-fill",
+    "emoji-frown","emoji-frown-fill","emoji-heart-eyes","emoji-heart-eyes-fill",
+    "emoji-kiss","emoji-kiss-fill","emoji-laughing","emoji-laughing-fill",
+    "emoji-neutral","emoji-neutral-fill","emoji-smile","emoji-smile-fill","emoji-smile-upside-down","emoji-smile-upside-down-fill",
+    "emoji-sunglasses","emoji-sunglasses-fill","emoji-wink","emoji-wink-fill","envelope","envelope-arrow-down",
+    "envelope-arrow-down-fill","envelope-arrow-up","envelope-arrow-up-fill","envelope-at","envelope-at-fill",
+    "envelope-check","envelope-check-fill","envelope-dash","envelope-dash-fill","envelope-exclamation","envelope-exclamation-fill",
+    "envelope-fill","envelope-heart","envelope-heart-fill","envelope-open","envelope-open-fill",
+    "envelope-open-heart","envelope-open-heart-fill","envelope-paper","envelope-paper-fill",
+    "envelope-paper-heart","envelope-paper-heart-fill","envelope-plus","envelope-plus-fill",
+    "envelope-slash","envelope-slash-fill","envelope-x","envelope-x-fill",
+    "eraser","eraser-fill","ethernet","exclamation","exclamation-circle","exclamation-circle-fill",
+    "exclamation-diamond","exclamation-diamond-fill","exclamation-lg","exclamation-octagon","exclamation-octagon-fill",
+    "exclamation-square","exclamation-square-fill","exclamation-triangle","exclamation-triangle-fill",
+    "explicit","explicit-fill","eye","eye-fill","eye-slash","eye-slash-fill",
+    "eyedropper","eyeglasses","facebook","fan","fast-forward","fast-forward-btn","fast-forward-btn-fill","fast-forward-circle","fast-forward-circle-fill","fast-forward-fill",
+    "feather","feather2","file","file-arrow-down","file-arrow-down-fill","file-arrow-up","file-arrow-up-fill",
+    "file-bar-graph","file-bar-graph-fill","file-binary","file-binary-fill","file-break","file-break-fill",
+    "file-check","file-check-fill","file-code","file-code-fill","file-diff","file-diff-fill",
+    "file-earmark","file-earmark-arrow-down","file-earmark-arrow-down-fill","file-earmark-arrow-up","file-earmark-arrow-up-fill",
+    "file-earmark-bar-graph","file-earmark-bar-graph-fill","file-earmark-binary","file-earmark-binary-fill",
+    "file-earmark-break","file-earmark-break-fill","file-earmark-check","file-earmark-check-fill",
+    "file-earmark-code","file-earmark-code-fill","file-earmark-diff","file-earmark-diff-fill",
+    "file-earmark-easel","file-earmark-easel-fill","file-earmark-excel","file-earmark-excel-fill",
+    "file-earmark-fill","file-earmark-font","file-earmark-font-fill","file-earmark-image","file-earmark-image-fill",
+    "file-earmark-lock","file-earmark-lock-fill","file-earmark-lock2","file-earmark-lock2-fill",
+    "file-earmark-medical","file-earmark-medical-fill","file-earmark-minus","file-earmark-minus-fill",
+    "file-earmark-music","file-earmark-music-fill","file-earmark-pdf","file-earmark-pdf-fill",
+    "file-earmark-person","file-earmark-person-fill","file-earmark-play","file-earmark-play-fill",
+    "file-earmark-plus","file-earmark-plus-fill","file-earmark-post","file-earmark-post-fill",
+    "file-earmark-ppt","file-earmark-ppt-fill","file-earmark-richtext","file-earmark-richtext-fill",
+    "file-earmark-ruled","file-earmark-ruled-fill","file-earmark-slides","file-earmark-slides-fill",
+    "file-earmark-spreadsheet","file-earmark-spreadsheet-fill","file-earmark-text","file-earmark-text-fill",
+    "file-earmark-word","file-earmark-word-fill","file-earmark-x","file-earmark-x-fill","file-earmark-zip","file-earmark-zip-fill",
+    "file-easel","file-easel-fill","file-excel","file-excel-fill","file-fill","file-font","file-font-fill",
+    "file-image","file-image-fill","file-lock","file-lock-fill","file-lock2","file-lock2-fill",
+    "file-medical","file-medical-fill","file-minus","file-minus-fill","file-music","file-music-fill",
+    "file-pdf","file-pdf-fill","file-person","file-person-fill","file-play","file-play-fill",
+    "file-plus","file-plus-fill","file-post","file-post-fill","file-ppt","file-ppt-fill",
+    "file-richtext","file-richtext-fill","file-ruled","file-ruled-fill","file-slides","file-slides-fill",
+    "file-spreadsheet","file-spreadsheet-fill","file-text","file-text-fill","file-word","file-word-fill",
+    "file-x","file-x-fill","file-zip","file-zip-fill","files","files-alt",
+    "filetype-aac","filetype-ai","filetype-bmp","filetype-cs","filetype-css","filetype-csv",
+    "filetype-doc","filetype-docx","filetype-exe","filetype-gif","filetype-heic",
+    "filetype-html","filetype-java","filetype-jpg","filetype-js","filetype-json",
+    "filetype-jsx","filetype-key","filetype-m4p","filetype-md","filetype-mdx",
+    "filetype-mov","filetype-mp3","filetype-mp4","filetype-otf","filetype-pdf",
+    "filetype-php","filetype-png","filetype-pptx","filetype-psd","filetype-py",
+    "filetype-raw","filetype-rb","filetype-sass","filetype-scss","filetype-sh",
+    "filetype-sql","filetype-svg","filetype-tiff","filetype-tsx","filetype-ttf",
+    "filetype-txt","filetype-wav","filetype-woff","filetype-xls","filetype-xlsx",
+    "filetype-xml","filetype-yml",
+    "filter","filter-circle","filter-circle-fill","filter-left","filter-right","filter-square","filter-square-fill",
+    "fingerprint","fire","flag","flag-fill","flower1","flower2","flower3",
+    "folder","folder-check","folder-fill","folder-minus","folder-plus","folder-symlink","folder-symlink-fill","folder-x",
+    "folder2","folder2-open","fonts","forward","forward-fill","front",
+    "fullscreen","fullscreen-exit","funnel","funnel-fill",
+    "gear","gear-fill","gear-wide","gear-wide-connected","gem","gender-ambiguous","gender-female","gender-male","gender-neuter","gender-trans",
+    "geo","geo-alt","geo-alt-fill","geo-fill","gift","gift-fill","github","globe","globe-americas","globe-asia-australia","globe-central-south-asia","globe-europe-africa",
+    "google","google-play","gpu-card","graph-down","graph-down-arrow","graph-up","graph-up-arrow",
+    "grid","grid-1x2","grid-1x2-fill","grid-3x2","grid-3x2-gap","grid-3x2-gap-fill","grid-fill",
+    "grip-horizontal","grip-vertical","hammer","hand-index","hand-index-fill",
+    "hand-index-thumb","hand-index-thumb-fill","hand-thumbs-down","hand-thumbs-down-fill","hand-thumbs-up","hand-thumbs-up-fill",
+    "handbag","handbag-fill","hash","hdd","hdd-fill","hdd-network","hdd-network-fill","hdd-rack","hdd-rack-fill","hdd-stack","hdd-stack-fill",
+    "hdmi","hdmi-fill","headphones","headset","heart","heart-arrow","heart-fill","heart-half","heart-pulse","heart-pulse-fill",
+    "heartbreak","heartbreak-fill","hearts","heptagon","heptagon-fill","heptagon-half",
+    "hexagon","hexagon-fill","hexagon-half","hospital","hospital-fill","hourglass","hourglass-bottom","hourglass-fill","hourglass-split","hourglass-top",
+    "house","house-add","house-add-fill","house-check","house-check-fill","house-dash","house-dash-fill","house-door","house-door-fill",
+    "house-down","house-down-fill","house-exclamation","house-exclamation-fill","house-fill","house-gear","house-gear-fill",
+    "house-heart","house-heart-fill","house-lock","house-lock-fill","house-slash","house-slash-fill","house-up","house-up-fill","house-x","house-x-fill",
+    "houses","houses-fill","hurricane","hypnotize",
+    "image","image-alt","image-fill","images","inbox","inbox-fill","incognito","indent","infinity",
+    "info","info-circle","info-circle-fill","info-lg","info-square","info-square-fill",
+    "input-cursor","input-cursor-text","instagram","intersect",
+    "journal","journal-album","journal-arrow-down","journal-arrow-up","journal-bookmark","journal-bookmark-fill",
+    "journal-check","journal-code","journal-medical","journal-minus","journal-plus","journal-richtext","journal-text","journal-x","journals",
+    "joystick","justify","justify-left","justify-right",
+    "kanban","kanban-fill","keyboard","keyboard-fill",
+    "ladder","lamp","lamp-fill","laptop","laptop-fill","layer-backward","layer-forward",
+    "layers","layers-fill","layers-half","layout-sidebar","layout-sidebar-inset","layout-sidebar-inset-reverse","layout-sidebar-reverse",
+    "layout-text-sidebar","layout-text-sidebar-reverse","layout-text-window","layout-text-window-reverse",
+    "layout-three-columns","layout-wtf","lightbulb","lightbulb-fill","lightbulb-off","lightbulb-off-fill",
+    "lightning","lightning-charge","lightning-charge-fill","lightning-fill","line","linkedin","list",
+    "list-check","list-columns","list-columns-reverse","list-nested","list-ol","list-stars","list-task","list-ul",
+    "lock","lock-fill","lungs","lungs-fill",
+    "magic","magnet","magnet-fill","map","map-fill","markdown","markdown-fill","mask","mastodon","megaphone","megaphone-fill",
+    "memory","menu-app","menu-app-fill","menu-button","menu-button-fill","menu-button-wide","menu-button-wide-fill","menu-down","menu-up",
+    "messenger","meta","mic","mic-fill","mic-mute","mic-mute-fill","microsoft","minecart","minecart-loaded","modem","modem-fill",
+    "moon","moon-fill","moon-stars","moon-stars-fill","mortarboard","mortarboard-fill","motherboard","motherboard-fill",
+    "mouse","mouse-fill","mouse2","mouse2-fill","mouse3","mouse3-fill","music-note","music-note-beamed","music-note-list","music-player","music-player-fill",
+    "newspaper","nintendo-switch","node-minus","node-minus-fill","node-plus","node-plus-fill",
+    "nut","nut-fill","nvme","nvme-fill",
+    "octagon","octagon-fill","octagon-half","optical-audio","optical-audio-fill",
+    "outlet","p-circle","p-circle-fill","p-square","p-square-fill","paint-bucket","palette","palette-fill","palette2",
+    "paperclip","paragraph","pass","pass-fill","passport","passport-fill","patch-check","patch-check-fill",
+    "patch-exclamation","patch-exclamation-fill","patch-minus","patch-minus-fill","patch-plus","patch-plus-fill","patch-question","patch-question-fill",
+    "pause","pause-btn","pause-btn-fill","pause-circle","pause-circle-fill","pause-fill",
+    "paypal","pc","pc-display","pc-display-horizontal","pc-horizontal","pci-card","pci-card-network","pci-card-sound",
+    "peace","peace-fill","pen","pen-fill","pencil","pencil-fill","pencil-square","pentagon","pentagon-fill","pentagon-half",
+    "people","people-fill","percent","person","person-add","person-badge","person-badge-fill","person-bounding-box",
+    "person-check","person-check-fill","person-circle","person-dash","person-dash-fill","person-exclamation","person-exclamation-fill",
+    "person-fill","person-fill-add","person-fill-check","person-fill-dash","person-fill-exclamation","person-fill-gear",
+    "person-fill-lock","person-fill-slash","person-fill-up","person-fill-x","person-gear","person-heart","person-heart-fill",
+    "person-lock","person-lines-fill","person-plus","person-plus-fill","person-raised-hand","person-rolodex","person-slash","person-square",
+    "person-up","person-vcard","person-vcard-fill","person-video","person-video2","person-video3","person-walking","person-wheelchair",
+    "person-workspace","person-x","person-x-fill","phone","phone-fill","phone-flip","phone-landscape","phone-landscape-fill",
+    "phone-vibrate","phone-vibrate-fill","pie-chart","pie-chart-fill","piggy-bank","piggy-bank-fill",
+    "pin","pin-angle","pin-angle-fill","pin-fill","pin-map","pin-map-fill","pinterest","pip","pip-fill",
+    "play","play-btn","play-btn-fill","play-circle","play-circle-fill","play-fill","playstation","plug","plug-fill",
+    "plugin","plus","plus-circle","plus-circle-dotted","plus-circle-fill","plus-lg","plus-slash-minus","plus-square","plus-square-dotted","plus-square-fill",
+    "postage","postage-fill","postage-heart","postage-heart-fill","postcard","postcard-fill","postcard-heart","postcard-heart-fill",
+    "power","printer","printer-fill","projector","projector-fill","puzzle","puzzle-fill",
+    "qr-code","question","question-circle","question-circle-fill","question-diamond","question-diamond-fill",
+    "question-lg","question-octagon","question-octagon-fill","question-square","question-square-fill",
+    "quote","r-circle","r-circle-fill","r-square","r-square-fill","radar","radioactive","rainbow",
+    "receipt","receipt-cutoff","reception-0","reception-1","reception-2","reception-3","reception-4",
+    "record","record-btn","record-btn-fill","record-circle","record-circle-fill","record-fill","record2","record2-fill",
+    "recycle","reddit","reply","reply-all","reply-all-fill","reply-fill","rewind","rewind-btn","rewind-btn-fill",
+    "rewind-circle","rewind-circle-fill","rewind-fill","robot","rocket","rocket-fill","rocket-takeoff","rocket-takeoff-fill",
+    "router","router-fill","rss","rss-fill","rulers",
+    "safe","safe-fill","safe2","safe2-fill","scissors","sd-card","sd-card-fill","search","search-heart","search-heart-fill",
+    "send","send-check","send-check-fill","send-dash","send-dash-fill","send-exclamation","send-exclamation-fill",
+    "send-fill","send-plus","send-plus-fill","send-slash","send-slash-fill","send-x","send-x-fill",
+    "server","share","share-fill","shield","shield-check","shield-exclamation","shield-fill","shield-fill-check",
+    "shield-fill-exclamation","shield-fill-minus","shield-fill-plus","shield-fill-x","shield-lock","shield-lock-fill",
+    "shield-minus","shield-plus","shield-shaded","shield-slash","shield-slash-fill","shield-x",
+    "shift","shift-fill","shop","shop-window","shuffle","sign-dead-end","sign-dead-end-fill","sign-do-not-enter","sign-do-not-enter-fill",
+    "sign-intersection","sign-intersection-fill","sign-intersection-side","sign-intersection-side-fill",
+    "sign-intersection-t","sign-intersection-t-fill","sign-intersection-y","sign-intersection-y-fill",
+    "sign-merge-left","sign-merge-left-fill","sign-merge-right","sign-merge-right-fill","sign-no-left-turn","sign-no-left-turn-fill",
+    "sign-no-parking","sign-no-parking-fill","sign-no-right-turn","sign-no-right-turn-fill","sign-railroad","sign-railroad-fill",
+    "sign-slow","sign-slow-fill","sign-split","sign-split-fill","sign-stop","sign-stop-fill","sign-stop-lights","sign-stop-lights-fill",
+    "sign-turn-left","sign-turn-left-fill","sign-turn-right","sign-turn-right-fill","sign-turn-slight-left","sign-turn-slight-left-fill",
+    "sign-turn-slight-right","sign-turn-slight-right-fill","sign-yield","sign-yield-fill",
+    "sim","sim-fill","sim-slash","sim-slash-fill","skip-backward","skip-backward-btn","skip-backward-btn-fill",
+    "skip-backward-circle","skip-backward-circle-fill","skip-backward-fill","skip-end","skip-end-btn","skip-end-btn-fill",
+    "skip-end-circle","skip-end-circle-fill","skip-end-fill","skip-forward","skip-forward-btn","skip-forward-btn-fill",
+    "skip-forward-circle","skip-forward-circle-fill","skip-forward-fill","skip-start","skip-start-btn","skip-start-btn-fill",
+    "skip-start-circle","skip-start-circle-fill","skip-start-fill","slack","slash","slash-circle","slash-circle-fill","slash-lg","slash-square","slash-square-fill",
+    "sliders","sliders2","sliders2-vertical","smartwatch","snapchat","snow","snow2","snow3","sort-alpha-down","sort-alpha-down-alt","sort-alpha-up","sort-alpha-up-alt",
+    "sort-down","sort-down-alt","sort-numeric-down","sort-numeric-down-alt","sort-numeric-up","sort-numeric-up-alt","sort-up","sort-up-alt",
+    "soundwave","speaker","speaker-fill","speedometer","speedometer2","spellcheck","square","square-fill","square-half",
+    "stack","stack-overflow","star","star-fill","star-half","stars","steam","stickies","stickies-fill",
+    "sticky","sticky-fill","stop","stop-btn","stop-btn-fill","stop-circle","stop-circle-fill","stop-fill",
+    "stoplights","stoplights-fill","stopwatch","stopwatch-fill","strava","stripe","subscript","subtitles","subtitles-fill",
+    "suit-club","suit-club-fill","suit-diamond","suit-diamond-fill","suit-heart","suit-heart-fill","suit-spade","suit-spade-fill",
+    "sun","sun-fill","sunglasses","sunrise","sunrise-fill","sunset","sunset-fill","superscript",
+    "symmetry-horizontal","symmetry-vertical",
+    "table","tablet","tablet-fill","tablet-landscape","tablet-landscape-fill",
+    "tag","tag-fill","tags","tags-fill","telegram","telephone","telephone-fill","telephone-forward","telephone-forward-fill",
+    "telephone-inbound","telephone-inbound-fill","telephone-minus","telephone-minus-fill","telephone-outbound","telephone-outbound-fill",
+    "telephone-plus","telephone-plus-fill","telephone-x","telephone-x-fill",
+    "terminal","terminal-dash","terminal-fill","terminal-plus","terminal-split","terminal-x",
+    "text-center","text-indent-left","text-indent-right","text-left","text-paragraph","text-right","text-wrap",
+    "textarea","textarea-resize","textarea-t","thermometer","thermometer-half","thermometer-high","thermometer-low","thermometer-snow","thermometer-sun",
+    "three-dots","three-dots-vertical","ticket","ticket-detailed","ticket-detailed-fill","ticket-fill","ticket-perforated","ticket-perforated-fill",
+    "tiktok","toggle-off","toggle-on","toggles","toggles2","tools","tornado","train-freight-front","train-freight-front-fill",
+    "train-front","train-front-fill","train-lightrail-front","train-lightrail-front-fill","translate",
+    "trash","trash-fill","trash2","trash2-fill","trash3","trash3-fill","tree","tree-fill","triangle","triangle-fill","triangle-half",
+    "trophy","trophy-fill","tropical-storm","truck","truck-flatbed","truck-front","truck-front-fill","tsunami","tv","tv-fill",
+    "twitch","twitter","twitter-x","type","type-bold","type-h1","type-h2","type-h3","type-h4","type-h5","type-h6",
+    "type-italic","type-strikethrough","type-underline",
+    "ubuntu","upc","upc-scan","upload","usb","usb-c","usb-c-fill","usb-drive","usb-drive-fill","usb-fill","usb-micro","usb-micro-fill","usb-mini","usb-mini-fill","usb-plug","usb-plug-fill","usb-symbol",
+    "valve","vimeo","vinyl","vinyl-fill","voicemail","volume-down","volume-down-fill","volume-mute","volume-mute-fill","volume-off","volume-off-fill","volume-up","volume-up-fill",
+    "vr","wallet","wallet-fill","wallet2","watch","webcam","webcam-fill","whatsapp","wifi","wifi-1","wifi-2","wifi-off",
+    "wind","window","window-dash","window-desktop","window-dock","window-fullscreen","window-plus","window-sidebar","window-split","window-stack","window-x",
+    "windows","wordpress","wrench","wrench-adjustable","wrench-adjustable-circle","wrench-adjustable-circle-fill",
+    "x","x-circle","x-circle-fill","x-diamond","x-diamond-fill","x-lg","x-octagon","x-octagon-fill","x-square","x-square-fill",
+    "xbox","youtube","zoom-in","zoom-out"
+  ];
+}
+
+// ──────────────────────────────────────────────────
+// INIT
+// ──────────────────────────────────────────────────
+loadIcons();
+</script>
+</body>
+</html>
